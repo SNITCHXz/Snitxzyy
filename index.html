@@ -1,34 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SNITCHX - Premium Streetwear</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>SNITCHX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.3);
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 150px;
+      z-index: 2;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      padding-top: 150px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    .btn {
+      margin-top: 30px;
+      background: #fff;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff3c00;
+      color: #fff;
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .logo { width: 100px; left: 15px; top: 15px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="background-video">
-    <video autoplay loop muted playsinline>
-      <source src="bg.mp4" type="video/mp4" />
-    </video>
+
+  <!-- Background Video -->
+  <video autoplay muted loop class="bg-video">
+    <source src="bg.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Logo -->
+  <img src="logo.png" alt="SNITCHX Logo" class="logo">
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>SNITCHX</h1>
+    <p>The exclusive street-style marketplace — where luxury meets drip.</p>
+    <button class="btn">Explore Collection</button>
   </div>
 
-  <header class="navbar">
-    <img src="logo.png" class="logo" />
-    <h1>SNITCHX</h1>
-  </header>
-
-  <main class="hero">
-    <h2>OG Streetwear. Luxury Defined.</h2>
-    <p>Handpicked drops. No resale. No cap.</p>
-    <a href="https://wa.me/91XXXXXXXXXX" class="btn">Order Now</a>
-  </main>
-
-  <footer class="footer">
-    <p>© 2025 SNITCHX. All Rights Reserved.</p>
-  </footer>
-
-  <script src="app.js"></script>
 </body>
 </html>
