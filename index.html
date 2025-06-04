@@ -1,148 +1,245 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SNITCHX - Premium Store</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }body {
-  background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
-  color: white;
-  min-height: 100vh;
-}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SNITCHX - Premium Products</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-header {
-  background: #000;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  box-shadow: 0 0 10px #00000066;
-}
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin:0; padding:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e1e2f 0%, #3a3a5a 100%);
+    color: #fff;
+  }
+  header {
+    background: #111122;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+  }
+  header img {
+    height: 40px;
+  }
+  header h1 {
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+  nav button {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 8px 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  nav button:hover {
+    background: #fff;
+    color: #111122;
+  }
+  main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 8px;
+    letter-spacing: 2px;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 25px;
+  }
+  .product-card {
+    background: #222233cc;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255,255,255,0.2);
+  }
+  .product-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: contain;
+    background: #111122;
+  }
+  .product-info {
+    padding: 15px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .product-name {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 6px;
+    min-height: 54px;
+  }
+  .product-desc {
+    font-size: 14px;
+    color: #ccc;
+    flex-grow: 1;
+  }
+  .product-price {
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #f5c518;
+  }
+  .btn-order {
+    margin-top: 15px;
+    background: #f5c518;
+    border: none;
+    padding: 10px 0;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #111122;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .btn-order:hover {
+    background: #e0b010;
+  }
 
-header img {
-  height: 50px;
-}
+  /* Smooth scroll animation */
+  html {
+    scroll-behavior: smooth;
+  }
 
-header h1 {
-  font-size: 2rem;
-  color: #ffffff;
-}
+  /* Responsive header nav buttons */
+  @media (max-width: 600px) {
+    nav {
+      gap: 10px;
+    }
+    header h1 {
+      font-size: 22px;
+    }
+  }
 
-.section {
-  padding: 4rem 2rem;
-}
-
-.section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #ffcc00;
-  text-align: center;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.product {
-  background: #141414;
-  padding: 1rem;
-  border-radius: 16px;
-  box-shadow: 0 0 15px #00000055;
-  transition: transform 0.3s ease;
-}
-
-.product:hover {
-  transform: scale(1.03);
-}
-
-.product img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.product h3 {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-}
-
-.product p {
-  margin: 0.5rem 0;
-  color: #ccc;
-}
-
-.btn {
-  margin-top: 1rem;
-  background: #ffcc00;
-  color: #000;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  text-align: center;
-  display: inline-block;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: #000;
-  color: #888;
-}
-
-  </style>
+</style>
 </head>
 <body>
-  <header>
+
+<header>
+  <div style="display:flex;align-items:center;gap:15px;">
     <img src="logo.png" alt="SNITCHX Logo" />
     <h1>SNITCHX</h1>
-  </header>  <section class="section">
-    <h2>Rolex Watches</h2>
-    <div class="products">
-      <div class="product">
-        <img src="watch1.jpg" alt="Explorer II" />
-        <h3>EXPLORER II</h3>
-        <p>Oyster, 42 mm, Oystersteel</p>
-        <a class="btn" href="https://wa.me/919928678907?text=I%20want%20to%20order%20EXPLORER%20II">Order on WhatsApp</a>
+  </div>
+  <nav>
+    <button onclick="showSection('shoes')">Shoes</button>
+    <button onclick="showSection('watches')">Watches</button>
+    <button onclick="showSection('clothing')">Clothing</button>
+  </nav>
+</header>
+
+<main>
+  <section id="shoes" class="product-section">
+    <h2 class="section-title">Shoes</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="nike-shoe.png" alt="Nike Shoes" class="product-img" />
+        <div class="product-info">
+          <div class="product-name">Nike Air Max 270</div>
+          <div class="product-desc">Comfortable & stylish running shoes</div>
+          <div class="product-price">$150</div>
+          <button class="btn-order" onclick="orderWhatsApp('Nike Air Max 270')">Order Now</button>
+        </div>
       </div>
-      <!-- Add more Rolex watches here -->
-    </div>
-  </section>  <section class="section">
-    <h2>Nike Shoes</h2>
-    <div class="products">
-      <div class="product">
-        <img src="shoe1.jpg" alt="AIR YEEZY RED OCTOBER" />
-        <h3>AIR YEEZY RED OCTOBER</h3>
-        <p>Limited Edition - $6,000</p>
-        <a class="btn" href="https://wa.me/919928678907?text=I%20want%20to%20order%20AIR%20YEEZY%20RED%20OCTOBER">Order on WhatsApp</a>
+      <div class="product-card">
+        <img src="jordan-retro.png" alt="Jordan Retro" class="product-img" />
+        <div class="product-info">
+          <div class="product-name">Jordan Retro 6</div>
+          <div class="product-desc">Limited edition basketball sneakers</div>
+          <div class="product-price">$200</div>
+          <button class="btn-order" onclick="orderWhatsApp('Jordan Retro 6')">Order Now</button>
+        </div>
       </div>
-      <!-- Add more Nike shoes here -->
     </div>
-  </section>  <section class="section">
-    <h2>iPhone Clones</h2>
-    <div class="products">
-      <div class="product">
-        <img src="iphone.jpg" alt="iPhone Clone 15 Pro Max" />
-        <h3>iPhone 15 Pro Max Clone</h3>
-        <p>Looks Like Original - ₹6,999</p>
-        <a class="btn" href="https://wa.me/919928678907?text=I%20want%20to%20order%20iPhone%20Clone">Order on WhatsApp</a>
+  </section>
+
+  <section id="watches" class="product-section" style="display:none;">
+    <h2 class="section-title">Watches</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="rolex-explorer-ii.png" alt="Rolex Explorer II" class="product-img" />
+        <div class="product-info">
+          <div class="product-name">Rolex Explorer II</div>
+          <div class="product-desc">Oyster, 42 mm, Oystersteel</div>
+          <div class="product-price">$32,275</div>
+          <button class="btn-order" onclick="orderWhatsApp('Rolex Explorer II')">Order Now</button>
+        </div>
       </div>
-      <!-- Add more iPhone clones here -->
+      <div class="product-card">
+        <img src="rolex-submariner.png" alt="Rolex Submariner Date" class="product-img" />
+        <div class="product-info">
+          <div class="product-name">Rolex Submariner Date</div>
+          <div class="product-desc">Oyster, 41 mm, Oystersteel NEW MODEL 2020</div>
+          <div class="product-price">$35,000</div>
+          <button class="btn-order" onclick="orderWhatsApp('Rolex Submariner Date')">Order Now</button>
+        </div>
+      </div>
     </div>
-  </section>  <footer>
-    &copy; 2025 SNITCHX. All Rights Reserved.
-  </footer>
-</body>
-</html>
+  </section>
+
+  <section id="clothing" class="product-section" style="display:none;">
+    <h2 class="section-title">Clothing</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="tshirt-black.png" alt="Black T-shirt" class="product-img" />
+        <div class="product-info">
+          <div class="product-name">Basic Black T-Shirt</div>
+          <div class="product-desc">Comfortable cotton, all sizes available</div>
+          <div class="product-price">$25</div>
+          <button class="btn-order" onclick="orderWhatsApp('Basic Black T-Shirt')">Order Now</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="pants-jeans.png" alt="Jeans Pants" class="product-img" />
+        <div class="product-info">
+          <div class="product-name">Denim Jeans Pants</div>
+          <div class="product-desc">Classic fit, durable denim</div>
+          <div class="product-price">$40</div>
+          <button class="btn-order" onclick="orderWhatsApp('Denim Jeans Pants')">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  function showSection(sectionId) {
+    document.querySelectorAll('.product-section').forEach(sec => {
+      sec.style.display = (sec.id === sectionId) ? 'block' : 'none';
+    });
+  }
+
+  function orderWhatsApp(productName) {
+    const phoneNumber = '9928678907'; // Tera WhatsApp number, country code ke sath daalna agar international chahiye
+    const message = encodeURIComponent(`Hello, I want to order the product: ${productName} from SNITCHX.`);
+    const url = `https://wa.me/${phoneNumber}?text=${message}`;
