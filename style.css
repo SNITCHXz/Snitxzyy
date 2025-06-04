@@ -5,91 +5,95 @@
 }
 
 body, html {
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
+  font-family: 'Urbanist', sans-serif;
   background: black;
+  color: white;
   overflow-x: hidden;
 }
 
 #bg-video {
   position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
-  filter: brightness(0.4);
+  z-index: -1;
+  filter: brightness(0.3) blur(2px);
 }
 
 header {
   text-align: center;
-  padding: 30px 20px;
+  padding: 40px 20px 20px;
   background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
 }
 
 .logo {
-  width: 80px;
-  height: auto;
-  margin-bottom: 10px;
+  width: 90px;
+  margin-bottom: 15px;
 }
 
 header h1 {
-  font-size: 2.5rem;
-  color: #fff;
-  letter-spacing: 1px;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
 }
 
-.products {
+.tagline {
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+.section {
   padding: 60px 20px;
+  backdrop-filter: blur(5px);
   background: rgba(0,0,0,0.5);
   text-align: center;
 }
 
-.products h2 {
+.section h2 {
   font-size: 2rem;
-  margin-bottom: 30px;
-  border-bottom: 2px solid white;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #fff;
   display: inline-block;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.product-row {
+  display: flex;
+  flex-wrap: wrap;
   gap: 30px;
-  max-width: 1200px;
-  margin: auto;
+  justify-content: center;
 }
 
 .product-card {
+  width: 250px;
   background: rgba(255,255,255,0.07);
   border-radius: 20px;
   padding: 20px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 15px rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  transition: 0.4s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
 .product-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.12);
 }
 
 .product-card img {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 14px;
   margin-bottom: 15px;
 }
 
 .product-card h3 {
   font-size: 1.2rem;
-  margin: 10px 0;
+  margin-bottom: 8px;
 }
 
 .product-card p {
   font-size: 1rem;
-  color: #ddd;
+  color: #ccc;
 }
