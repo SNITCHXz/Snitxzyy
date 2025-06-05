@@ -1,192 +1,63 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SNITCHX - Premium Products</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body, html {
-      height: 100%;
-      background: linear-gradient(135deg, #1e3c72, #2a5298, #1e3c72);
-      background-size: 600% 600%;
-      animation: gradientBG 20s ease infinite;
-      color: #fff;
-    }
-    @keyframes gradientBG {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
-    header {
-      position: fixed;
-      width: 100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      padding: 10px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-    header .logo {
-      display: flex;
-      align-items: center;
-    }
-    header .logo img {
-      height: 50px;
-      margin-right: 12px;
-    }
-    header .logo h1 {
-      font-weight: 700;
-      font-size: 1.8rem;
-      letter-spacing: 4px;
-      color: #f9a825;
-      text-shadow: 0 0 10px #f9a825;
-    }
-    main {
-      padding: 100px 40px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    section {
-      margin-bottom: 60px;
-    }
-    section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-      border-left: 5px solid #f9a825;
-      padding-left: 10px;
-      font-weight: 700;
-      text-shadow: 0 0 6px #f9a825;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-      gap: 25px;
-    }
-    .card {
-      background: rgba(255 255 255 / 0.1);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
-      padding: 15px;
-      backdrop-filter: blur(5px);
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.6s forwards;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgb(0 0 0 / 0.5);
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      background: #fff;
-      padding: 8px;
-    }
-    .card .name {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-      color: #ffd54f;
-      text-shadow: 0 0 6px #f9a825;
-    }
-    .card .desc {
-      font-size: 0.9rem;
-      color: #eee;
-      margin-bottom: 8px;
-      min-height: 44px;
-    }
-    .card .price {
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: #fbc02d;
-      margin-bottom: 12px;
-    }
-    .card button {
-      background: #f9a825;
-      border: none;
-      padding: 10px;
-      border-radius: 6px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      color: #222;
-      cursor: pointer;
-      box-shadow: 0 0 8px #f9a825aa;
-      transition: background 0.3s ease;
-    }
-    .card button:hover {
-      background: #c68400;
-      box-shadow: 0 0 14px #c68400cc;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SNITCHX | Luxury Drops</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <div class="logo">
-    <img src="logo.png" alt="SNITCHX Logo" />
+
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/bg-video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Header -->
+  <header>
+    <img src="assets/logo.png" alt="SNITCHX" class="logo" />
     <h1>SNITCHX</h1>
-  </div>
-</header>
-<main>
-  <section>
-    <h2>Watches</h2>
-    <div class="products">
-      <div class="card">
-        <img src="https://images.rolex.com/dw/image/v2/BBLC_PRD/on/demandware.static/-/Sites-rolex-master-catalog/default/dw4c3880e4/images/watches/m126710blnr-0001.png" alt="Explorer" />
-        <div class="name">Explorer II</div>
-        <div class="desc">42 mm, Oystersteel</div>
-        <div class="price">₹80,000</div>
-        <button onclick="orderWhatsApp('Explorer II')">Order on WhatsApp</button>
-      </div>
-    </div>
-  </section>
-  <section>
+    <p>Luxury. Drip. Delivered.</p>
+  </header>
+
+  <!-- Section: Shoes -->
+  <section class="section">
     <h2>Shoes</h2>
-    <div class="products">
-      <div class="card">
-        <img src="https://cdn.shopify.com/s/files/1/0248/4156/0979/products/jordan-retro-high-og-black-white-3_500x.jpg" alt="Jordan Retro" />
-        <div class="name">Jordan Retro</div>
-        <div class="desc">Classic high top sneakers</div>
-        <div class="price">₹12,000</div>
-        <button onclick="orderWhatsApp('Jordan Retro')">Order on WhatsApp</button>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="assets/products/shoe1.jpg" alt="Shoe" />
+        <h3>Nike Air OG</h3>
+        <p>₹5,499</p>
+        <a href="https://wa.me/91YOURNUMBER?text=I want to order Nike Air OG from SNITCHX" target="_blank">Order on WhatsApp</a>
       </div>
     </div>
   </section>
-  <section>
+
+  <!-- Section: Watches -->
+  <section class="section">
+    <h2>Watches</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="assets/products/watch1.jpg" alt="Watch" />
+        <h3>Rolex Submariner</h3>
+        <p>₹12,999</p>
+        <a href="https://wa.me/91YOURNUMBER?text=I want to order Rolex Submariner from SNITCHX" target="_blank">Order on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Clothing -->
+  <section class="section">
     <h2>Clothing</h2>
-    <div class="products">
-      <div class="card">
-        <img src="https://cdn.shopify.com/s/files/1/0620/7141/3248/products/27_360x.jpg" alt="T-shirt" />
-        <div class="name">Oversized Tee</div>
-        <div class="desc">Premium cotton, loose fit</div>
-        <div class="price">₹1,299</div>
-        <button onclick="orderWhatsApp('Oversized Tee')">Order on WhatsApp</button>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="assets/products/tshirt1.jpg" alt="T-Shirt" />
+        <h3>Oversized Tee</h3>
+        <p>₹999</p>
+        <a href="https://wa.me/91YOURNUMBER?text=I want to order Oversized Tee from SNITCHX" target="_blank">Order on WhatsApp</a>
       </div>
     </div>
   </section>
-</main>
-<script>
-  function orderWhatsApp(productName) {
-    const phone = '91YOURNUMBER'; // Replace with your number
-    const msg = `Hey, I'm interested in buying ${productName}. Please provide more details.`;
-    const link = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(link, '_blank');
-  }
-</script>
+
 </body>
 </html>
