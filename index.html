@@ -1,187 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SNITCHX - Pro E-commerce</title>
-<style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  body, html {
-    height: 100%;
-    overflow-x: hidden;
-    color: #fff;
-    background: #000;
-  }
-  #bg-video {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -2;
-    filter: brightness(0.6);
-  }
-  #overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.5);
-    z-index: -1;
-  }
-  header {
-    padding: 20px 40px;
-    font-size: 2rem;
-    font-weight: 900;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #f1c40f;
-    text-shadow: 2px 2px 5px #000;
-  }
-  main {
-    max-width: 1200px;
-    margin: 100px auto 50px auto;
-    padding: 0 20px;
-  }
-  section {
-    margin-bottom: 60px;
-  }
-  h2 {
-    border-bottom: 3px solid #f1c40f;
-    padding-bottom: 8px;
-    margin-bottom: 30px;
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: #f1c40f;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
-    gap: 25px;
-  }
-  .product-card {
-    background: rgba(255,255,255,0.1);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(6px);
-  }
-  .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px #f1c40f;
-  }
-  .product-image {
-    width: 100%;
-    height: 180px;
-    object-fit: contain;
-    background: #111;
-  }
-  .product-info {
-    padding: 15px;
-  }
-  .product-name {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #f1c40f;
-  }
-  .product-desc {
-    font-size: 0.9rem;
-    color: #ddd;
-    margin-bottom: 12px;
-  }
-  .order-btn {
-    display: inline-block;
-    background: #f1c40f;
-    color: #000;
-    padding: 10px 18px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background 0.3s ease;
-  }
-  .order-btn:hover {
-    background: #c39a0a;
-  }
-  @media(max-width: 600px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SNITCHX - Premium Products</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body, html {
+      height: 100%;
+      background: linear-gradient(135deg, #1e3c72, #2a5298, #1e3c72);
+      background-size: 600% 600%;
+      animation: gradientBG 20s ease infinite;
+      color: #fff;
+    }
+    @keyframes gradientBG {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
     header {
-      font-size: 1.5rem;
-      padding: 15px 20px;
+      position: fixed;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      padding: 10px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+    }
+    header .logo img {
+      height: 50px;
+      margin-right: 12px;
+    }
+    header .logo h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 4px;
+      color: #f9a825;
+      text-shadow: 0 0 10px #f9a825;
     }
     main {
-      margin: 70px 10px 30px 10px;
+      padding: 100px 40px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-  }
-</style>
+    section {
+      margin-bottom: 60px;
+    }
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      border-left: 5px solid #f9a825;
+      padding-left: 10px;
+      font-weight: 700;
+      text-shadow: 0 0 6px #f9a825;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 25px;
+    }
+    .card {
+      background: rgba(255 255 255 / 0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+      padding: 15px;
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s forwards;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgb(0 0 0 / 0.5);
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background: #fff;
+      padding: 8px;
+    }
+    .card .name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: #ffd54f;
+      text-shadow: 0 0 6px #f9a825;
+    }
+    .card .desc {
+      font-size: 0.9rem;
+      color: #eee;
+      margin-bottom: 8px;
+      min-height: 44px;
+    }
+    .card .price {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #fbc02d;
+      margin-bottom: 12px;
+    }
+    .card button {
+      background: #f9a825;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #222;
+      cursor: pointer;
+      box-shadow: 0 0 8px #f9a825aa;
+      transition: background 0.3s ease;
+    }
+    .card button:hover {
+      background: #c68400;
+      box-shadow: 0 0 14px #c68400cc;
+    }
+  </style>
 </head>
 <body>
-
-<video id="bg-video" autoplay muted loop playsinline>
-  <source src="https://cdn.videvo.net/videvo_files/video/free/2018-09/small_watermarked/180828_05_Waves_04_preview.webm" type="video/webm" />
-  <source src="https://cdn.videvo.net/videvo_files/video/free/2018-09/small_watermarked/180828_05_Waves_04_preview.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-<div id="overlay"></div>
-
-<header>SNITCHX</header>
-
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="SNITCHX Logo" />
+    <h1>SNITCHX</h1>
+  </div>
+</header>
 <main>
-
-  <section id="watches">
+  <section>
     <h2>Watches</h2>
     <div class="products">
-      <div class="product-card">
-        <img class="product-image" src="https://images.rolex.com/dam/watches/family-page/rolex-explorer-ii-family.jpg" alt="Explorer II" />
-        <div class="product-info">
-          <div class="product-name">EXPLORER II</div>
-          <div class="product-desc">Oyster, 42 mm, Oystersteel</div>
-          <a href="https://wa.me/9928678907?text=I%20want%20to%20order%20Explorer%20II%20watch" target="_blank" class="order-btn">Order Now</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <img class="product-image" src="https://images.rolex.com/dam/watches/family-page/rolex-submariner-family.jpg" alt="SUBMARINER DATE" />
-        <div class="product-info">
-          <div class="product-name">SUBMARINER DATE</div>
-          <div class="product-desc">Oyster, 41 mm, Oystersteel NEW MODEL 2020</div>
-          <a href="https://wa.me/9928678907?text=I%20want%20to%20order%20Submariner%20Date%20watch" target="_blank" class="order-btn">Order Now</a>
-        </div>
+      <div class="card">
+        <img src="https://images.rolex.com/dw/image/v2/BBLC_PRD/on/demandware.static/-/Sites-rolex-master-catalog/default/dw4c3880e4/images/watches/m126710blnr-0001.png" alt="Explorer" />
+        <div class="name">Explorer II</div>
+        <div class="desc">42 mm, Oystersteel</div>
+        <div class="price">₹80,000</div>
+        <button onclick="orderWhatsApp('Explorer II')">Order on WhatsApp</button>
       </div>
     </div>
   </section>
-
-  <section id="shoes">
+  <section>
     <h2>Shoes</h2>
     <div class="products">
-      <div class="product-card">
-        <img class="product-image" src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd203d1e-6f6e-49bc-92c1-6a7e2808d4f8/air-force-1-07-shoe-2Q2vBk.jpg" alt="Air Force 1" />
-        <div class="product-info">
-          <div class="product-name">AIR FORCE 1</div>
-          <div class="product-desc">$200</div>
-          <a href="https://wa.me/9928678907?text=I%20want%20to%20order%20Air%20Force%201" target="_blank" class="order-btn">Order Now</a>
-        </div>
+      <div class="card">
+        <img src="https://cdn.shopify.com/s/files/1/0248/4156/0979/products/jordan-retro-high-og-black-white-3_500x.jpg" alt="Jordan Retro" />
+        <div class="name">Jordan Retro</div>
+        <div class="desc">Classic high top sneakers</div>
+        <div class="price">₹12,000</div>
+        <button onclick="orderWhatsApp('Jordan Retro')">Order on WhatsApp</button>
       </div>
     </div>
   </section>
-
-  <section id="clothing">
+  <section>
     <h2>Clothing</h2>
     <div class="products">
-      <div class="product-card">
-        <img class="product-image" src="https://via.placeholder.com/250x180.png?text=Basic+T-Shirt" alt="T-Shirt" />
-        <div class="product-info">
-          <div class="product-name">Basic T-Shirt</div>
-          <div class="product-desc">100% Cotton, Black</div>
-          <a href="https://wa.me/9928678907?text=I%20want%20to%20order%20Basic%20T-Shirt" target="_blank" class="order-btn">Order Now</a>
-        </div>
+      <div class="card">
+        <img src="https://cdn.shopify.com/s/files/1/0620/7141/3248/products/27_360x.jpg" alt="T-shirt" />
+        <div class="name">Oversized Tee</div>
+        <div class="desc">Premium cotton, loose fit</div>
+        <div class="price">₹1,299</div>
+        <button onclick="orderWhatsApp('Oversized Tee')">Order on WhatsApp</button>
       </div>
     </div>
   </section>
-
 </main>
-
+<script>
+  function orderWhatsApp(productName) {
+    const phone = '91YOURNUMBER'; // Replace with your number
+    const msg = `Hey, I'm interested in buying ${productName}. Please provide more details.`;
+    const link = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(link, '_blank');
+  }
+</script>
 </body>
 </html>
