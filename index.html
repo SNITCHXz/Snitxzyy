@@ -1,142 +1,427 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SnitchX - OG Drop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html {
-      height: 100%;
-      font-family: 'Outfit', sans-serif;
-      color: white;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-    video.bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      z-index: -1;
-      object-fit: cover;
-    }
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
-      z-index: 0;
-    }
-    header {
-      text-align: center;
-      padding: 100px 20px 40px;
-    }
-    header img {
-      width: 120px;
-      animation: pulse 3s infinite;
-    }
-    header h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      background: linear-gradient(to right, #fff, #9e00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-top: 20px;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .product {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 20px;
-      backdrop-filter: blur(6px);
-      text-align: center;
-      transition: 0.3s ease;
-    }
-    .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(255,255,255,0.2);
-    }
-    .product img {
-      width: 100%;
-      border-radius: 15px;
-      height: 250px;
-      object-fit: cover;
-    }
-    .product h3 {
-      margin-top: 15px;
-      font-weight: 600;
-    }
-    .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 14px;
-      background: rgba(255, 255, 255, 0.05);
-      margin-top: 50px;
-    }/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #9e00ff, #ff0080);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff0080, #9e00ff);
-}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SnitchX OG Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+  /* Reset and basics */
+  * {margin:0; padding:0; box-sizing:border-box;}
+  body, html {
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    background: #000;
+    color: #eee;
+    overflow-x: hidden;
+  }
+  a {text-decoration:none; color: inherit;}
 
-  </style>
+  /* Loading screen */
+  #loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    color: #9e00ff;
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: 3px;
+  }
+  #loading .pulse {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #9e00ff, #ff0080);
+    animation: pulse 1.5s infinite;
+    margin-top: 20px;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.6; }
+  }
+
+  /* Video background */
+  video.bg-video {
+    position: fixed;
+    top:0; left:0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+    filter: brightness(0.4);
+  }
+  .overlay {
+    position: fixed;
+    top:0; left:0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    z-index: -1;
+  }
+
+  /* Glassmorphic sticky navbar */
+  nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(30, 0, 40, 0.5);
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    z-index: 100;
+    box-shadow: 0 0 15px rgba(158,0,255,0.3);
+  }
+  nav img {
+    width: 100px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    gap: 30px;
+  }
+  nav ul li {
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    position: relative;
+    color: #eee;
+    transition: color 0.3s;
+  }
+  nav ul li:hover {
+    color: #ff0080;
+  }
+
+  /* Social sidebar */
+  .social-sidebar {
+    position: fixed;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+  }
+  .social-sidebar a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #9e00ff, #ff0080);
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-size: 22px;
+    box-shadow: 0 0 10px #ff0080;
+    transition: transform 0.3s ease;
+  }
+  .social-sidebar a:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px #9e00ff;
+  }
+
+  /* Header with logo and title */
+  header {
+    text-align: center;
+    padding: 120px 20px 40px;
+  }
+  header img {
+    width: 130px;
+    animation: pulse 3s infinite;
+  }
+  header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #fff, #9e00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 20px;
+  }
+
+  /* Products grid */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+  }
+  .product {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    color: #eee;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .product:hover {
+    box-shadow: 0 0 20px #ff0080;
+    transform: scale(1.05);
+    z-index: 10;
+  }
+  .product img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  .product h3 {
+    margin-top: 15px;
+    font-weight: 600;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #9e00ff, #ff0080);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff0080, #9e00ff);
+  }
+
+  /* Modal */
+  .modal-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+  }
+  .modal {
+    background: #1a001f;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    color: #eee;
+    text-align: center;
+    box-shadow: 0 0 20px #ff0080;
+    position: relative;
+  }
+  .modal img {
+    width: 100%;
+    border-radius: 15px;
+  }
+  .modal h2 {
+    margin: 20px 0 10px;
+    font-weight: 700;
+  }
+  .modal button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #9e00ff, #ff0080);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .modal button:hover {
+    background: linear-gradient(45deg, #ff0080, #9e00ff);
+  }
+  .modal .close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ff0080;
+    font-weight: 900;
+  }
+
+  /* Music toggle */
+  #musicToggle {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    background: linear-gradient(45deg, #9e00ff, #ff0080);
+    border: none;
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff0080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1500;
+  }
+  #musicToggle:hover {
+    box-shadow: 0 0 25px #9e00ff;
+  }
+</style>
 </head>
 <body>
-  <video autoplay muted loop class="bg-video">
-    <source src="background.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>  <header>
-    <img src="logo.png" alt="SnitchX Logo">
-    <h1>SnitchX Premium Drop</h1>
-  </header>  <section class="products">
-    <div class="product"><img src="nike1.jpg" alt><h3>Nike Vibe</h3></div>
-    <div class="product"><img src="nike2.jpg" alt><h3>Nike Air Street</h3></div>
-    <div class="product"><img src="rolex1.jpg" alt><h3>Rolex Classic</h3></div>
-    <div class="product"><img src="rolex2.jpg" alt><h3>Rolex Dark</h3></div>
-    <div class="product"><img src="rolex3.jpg" alt><h3>Rolex OG</h3></div>
-    <div class="product"><img src="snitchx.jpg" alt><h3>SnitchX V1</h3></div>
-    <div class="product"><img src="snitchx1.jpg" alt><h3>SnitchX Night</h3></div>
-    <div class="product"><img src="snitchx2.jpg" alt><h3>SnitchX Drop</h3></div>
-  </section><a class="whatsapp" href="https://wa.me/918793727113" target="_blank">View Catalog</a>
 
-  <footer>
-    &copy; 2025 SnitchX® | All Rights Reserved
-  </footer>
+<!-- Loading Screen -->
+<div id="loading">
+  SnitchX<br />
+  <div class="pulse"></div>
+</div>
+
+<!-- Video Background -->
+<video class="bg-video" autoplay muted loop>
+  <source src="background.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+<div class="overlay"></div>
+
+<!-- Navigation -->
+<nav>
+  <img src="logo.png" alt="SnitchX Logo" />
+  <ul>
+    <li>Catalog</li>
+    <li>About</li>
+    <li>Contact</li>
+  </ul>
+</nav>
+
+<!-- Social Sidebar -->
+<div class="social-sidebar">
+  <a href="https://instagram.com/snitchx" target="_blank" title="Instagram" aria-label="Instagram">&#x1F47E;</a>
+  <a href="https://threads.net/snitchx" target="_blank" title="Threads" aria-label="Threads">&#x1F517;</a>
+  <a href="https://wa.me/918793727113" target="_blank" title="WhatsApp" aria-label="WhatsApp">&#x2709;</a>
+</div>
+
+<!-- Header -->
+<header>
+  <img src="logo.png" alt="SnitchX Logo" />
+  <h1>SnitchX Premium Drop</h1>
+</header>
+
+<!-- Products Grid -->
+<section class="products">
+  <div class="product" data-name="Nike Vibe" data-img="nike1.jpg">
+    <img src="nike1.jpg" alt="Nike Vibe" />
+    <h3>Nike Vibe</h3>
+  </div>
+  <div class="product" data-name="Nike Air Street" data-img="nike2.jpg">
+    <img src="nike2.jpg" alt="Nike Air Street" />
+    <h3>Nike Air Street</h3>
+  </div>
+  <div class="product" data-name="Rolex Classic" data-img="rolex1.jpg">
+    <img src="rolex1.jpg" alt="Rolex Classic" />
+    <h3>Rolex Classic</h3>
+  </div>
+  <div class="product" data-name="Rolex Dark" data-img="rolex2.jpg">
+    <img src="rolex2.jpg" alt="Rolex Dark" />
+    <h3>Rolex Dark</h3>
+  </div>
+  <div class="product" data-name="Rolex OG" data-img="rolex3.jpg">
+    <img src="rolex3.jpg" alt="Rolex OG" />
+    <h3>Rolex OG</h3>
+  </div>
+  <div class="product" data-name="SnitchX V1" data-img="snitchx.jpg">
+    <img src="snitchx.jpg" alt="SnitchX V1" />
+    <h3>SnitchX V1</h3>
+  </div>
+  <div class="product" data-name="SnitchX Night" data-img="snitchx1.jpg">
+    <img src="snitchx1.jpg" alt="SnitchX Night" />
+    <h3>SnitchX Night</h3>
+  </div>
+  <div class="product" data-name="SnitchX Drop" data-img="snitchx2.jpg">
+    <img src="snitchx2.jpg" alt="SnitchX Drop" />
+    <h3>SnitchX Drop</h3>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal" id="modal">
+    <span class="close-btn" id="modal-close">&times;</span>
+    <img src="" alt="" id="modal-img" />
+    <h2 id="modal-title"></h2>
+    <a href="https://wa.me/918793727113" target="_blank">
+      <button>Order on WhatsApp</button>
+    </a>
+  </div>
+</div>
+
+<!-- Music Toggle -->
+<button id="musicToggle" title="Toggle Music">&#127925;</button>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mp3" />
+</audio>
+
+<script>
+  // Loading screen hide after 2.5 sec
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loading').style.display = 'none';
+    }, 2500);
+  });
+
+  // Product modal open/close
+  const products = document.querySelectorAll('.product');
+  const modalBg = document.getElementById('modal-bg');
+  const modalImg = document.getElementById('modal-img');
+  const modalTitle = document.getElementById('modal-title');
+  const modalClose = document.getElementById('modal-close');
+
+  products.forEach(product => {
+    product.addEventListener('click', () => {
+      modalImg.src = product.dataset.img;
+      modalImg.alt = product.dataset.name;
+      modalTitle.textContent = product.dataset.name;
+      modalBg.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  modalClose.addEventListener('click', () => {
+    modalBg.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+
+  modalBg.addEventListener('click', e => {
+    if (e.target === modalBg) {
+      modalBg.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Background music toggle
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bgMusic');
+  let musicPlaying = false;
+
+  musicToggle.addEventListener('click', () => {
+    if (!musicPlaying) {
+      bgMusic.play();
+      musicToggle.style.boxShadow = '0 0 25px #9e00ff';
+      musicPlaying = true;
+    } else {
+      bgMusic.pause();
+      musicToggle.style.boxShadow = '0 0 15px #ff0080';
+      musicPlaying = false;
+    }
+  });
+</script>
 </body>
-</html>
+      </html>
