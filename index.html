@@ -3,112 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SnitchX Product Catalog</title>
+  <title>SnitchX - Product Catalog</title>
   <style>
-    /* Basic reset */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #121212;
-      color: #fff;
-      padding: 40px;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #e0e0e0;
+      padding: 60px 20px 40px;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-container {
+      width: 180px;
+      margin-bottom: 30px;
+    }
+    .logo-container img {
+      width: 100%;
+      display: block;
+      filter: drop-shadow(0 0 6px #00fff7);
+      transition: transform 0.3s ease;
+    }
+    .logo-container img:hover {
+      transform: scale(1.05);
     }
 
     h1 {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 40px;
-      color: #00e5ff;
-      text-shadow: 0 0 10px #00e5ff;
+      font-size: 2.6rem;
+      margin-bottom: 50px;
+      letter-spacing: 4px;
+      color: #00fff7;
+      text-shadow: 0 0 15px #00fff7;
+      font-weight: 600;
+      user-select: none;
     }
 
     .catalog {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 38px;
+      max-width: 1300px;
+      width: 100%;
+      padding-bottom: 40px;
     }
 
     .product-card {
-      background: #1f1f1f;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,229,255,0.5);
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0,255,255,0.3);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 25px rgba(0,229,255,0.8);
+      transform: translateY(-12px);
+      box-shadow: 0 14px 50px rgba(0,255,255,0.8);
     }
 
     .product-image {
       width: 100%;
-      height: 250px;
+      height: 230px;
       object-fit: cover;
-      border-bottom: 2px solid #00e5ff;
+      border-bottom: 3px solid #00fff7;
       transition: transform 0.4s ease;
+      border-radius: 0 0 18px 18px;
     }
 
     .product-card:hover .product-image {
-      transform: scale(1.05);
+      transform: scale(1.12);
     }
 
     .product-info {
-      padding: 20px;
+      padding: 22px 28px;
       text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .product-name {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
+      font-weight: 700;
       margin-bottom: 10px;
-      letter-spacing: 1px;
+      letter-spacing: 1.3px;
+      color: #00fff7;
+      text-shadow: 0 0 15px #00fff7;
     }
 
     .product-desc {
-      font-size: 1rem;
-      color: #aad8f6;
-      margin-bottom: 15px;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #a0f7f9cc;
+      margin-bottom: 20px;
+      min-height: 60px;
+      line-height: 1.3;
     }
 
     .whatsapp-btn {
       display: inline-block;
-      padding: 12px 25px;
+      padding: 15px 40px;
       background: #25D366;
       color: #fff;
-      border-radius: 25px;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
-      box-shadow: 0 0 10px #25D366;
-      transition: background 0.3s ease;
+      font-size: 1.15rem;
+      box-shadow: 0 0 22px #25D366;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      letter-spacing: 1px;
     }
     .whatsapp-btn:hover {
       background: #1DA851;
+      box-shadow: 0 0 35px #1DA851;
     }
 
     /* Responsive */
     @media (max-width: 600px) {
+      body {
+        padding-top: 40px;
+      }
+      .logo-container {
+        width: 140px;
+        margin-bottom: 24px;
+      }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
       .product-image {
         height: 180px;
+      }
+      .product-name {
+        font-size: 1.4rem;
+      }
+      .whatsapp-btn {
+        padding: 13px 32px;
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <h1>SnitchX Product Catalog</h1>
-
-  <div class="catalog" id="catalog">
-    <!-- Products will be dynamically inserted here -->
+  <!-- Logo on top -->
+  <div class="logo-container">
+    <img src="logo.png" alt="SnitchX Logo" />
   </div>
 
+  <h1>Product Catalog</h1>
+
+  <div class="catalog" id="catalog"></div>
+
   <script>
-    // Product data array
     const products = [
       { name: "Nike Product 1", img: "nike1.jpg", desc: "High-quality Nike shoes, perfect for sports." },
       { name: "Nike Product 2", img: "nike2.jpg", desc: "Comfortable and stylish Nike sneakers." },
@@ -122,20 +183,17 @@
 
     const catalogEl = document.getElementById("catalog");
 
-    // Dynamically create product cards
     products.forEach(product => {
       const card = document.createElement("div");
       card.className = "product-card";
-
       card.innerHTML = `
         <img class="product-image" src="${product.img}" alt="${product.name}" />
         <div class="product-info">
           <div class="product-name">${product.name}</div>
           <div class="product-desc">${product.desc}</div>
-          <a class="whatsapp-btn" href="https://wa.me/8793727113?text=Hi%20I%20am%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">WhatsApp Inquiry</a>
+          <a class="whatsapp-btn" href="https://wa.me/8793727113?text=Hi%20I%20am%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank" rel="noopener noreferrer">WhatsApp Inquiry</a>
         </div>
       `;
-
       catalogEl.appendChild(card);
     });
   </script>
