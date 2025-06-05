@@ -1,108 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>SnitchX Store</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SnitchX Product Catalog</title>
   <style>
+    /* Basic reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .product-card {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: 280px;
-      text-align: center;
-      margin: 15px;
-      transition: transform 0.3s ease;
-    }
-    .product-card:hover {
-      transform: scale(1.03);
-    }
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    .product-card h3 {
-      font-size: 18px;
-      margin: 10px 0 5px;
-      color: #222;
-    }
-    .product-card p {
-      font-size: 14px;
-      color: #666;
-    }
-    .price {
-      color: #000;
-      font-weight: bold;
-      margin: 10px 0;
-      display: block;
-    }
-    .whatsapp-btn {
-      background-color: #25D366;
+      font-family: 'Poppins', sans-serif;
+      background: #121212;
       color: #fff;
-      padding: 10px 15px;
-      border-radius: 8px;
-      text-decoration: none;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      color: #00e5ff;
+      text-shadow: 0 0 10px #00e5ff;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: #1f1f1f;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,229,255,0.5);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0,229,255,0.8);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 2px solid #00e5ff;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-name {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .product-desc {
+      font-size: 1rem;
+      color: #aad8f6;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-btn {
       display: inline-block;
-      margin-top: 10px;
-      font-weight: bold;
+      padding: 12px 25px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 0 10px #25D366;
+      transition: background 0.3s ease;
+    }
+    .whatsapp-btn:hover {
+      background: #1DA851;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .product-image {
+        height: 180px;
+      }
     }
   </style>
 </head>
 <body>
 
-<h1 style="text-align:center; font-family:sans-serif;">🔥 SnitchX Products 🔥</h1>
+  <h1>SnitchX Product Catalog</h1>
 
-<div class="container">
-
-  <!-- Nike 1 -->
-  <div class="product-card">
-    <img src="images/nike1.jpg" alt="Nike Shoes">
-    <h3>Nike Premium</h3>
-    <p>High-top Sneakers</p>
-    <span class="price">₹2,200</span>
-    <a class="whatsapp-btn" href="https://wa.me/918793727113?text=Hi%20SnitchX,%20I'm%20interested%20in%20Nike%20Premium.%20Send%20me%20details." target="_blank">📲 WhatsApp Us</a>
+  <div class="catalog" id="catalog">
+    <!-- Products will be dynamically inserted here -->
   </div>
 
-  <!-- Rolex 1 -->
-  <div class="product-card">
-    <img src="images/rolex1.jpg" alt="Rolex Watch">
-    <h3>Rolex Explorer</h3>
-    <p>Luxury Watch</p>
-    <span class="price">₹6,999</span>
-    <a class="whatsapp-btn" href="https://wa.me/918793727113?text=Hi%20SnitchX,%20I'm%20interested%20in%20Rolex%20Explorer.%20Send%20details." target="_blank">📲 WhatsApp Us</a>
-  </div>
+  <script>
+    // Product data array
+    const products = [
+      { name: "Nike Product 1", img: "nike1.jpg", desc: "High-quality Nike shoes, perfect for sports." },
+      { name: "Nike Product 2", img: "nike2.jpg", desc: "Comfortable and stylish Nike sneakers." },
+      { name: "Rolex Product 1", img: "rolex1.jpg", desc: "Luxury Rolex watch with classic design." },
+      { name: "Rolex Product 2", img: "rolex2.jpg", desc: "Elegant Rolex watch with premium build." },
+      { name: "Rolex Product 3", img: "rolex3.jpg", desc: "Limited edition Rolex for collectors." },
+      { name: "SnitchX Product 1", img: "snitchx.jpg", desc: "Exclusive SnitchX branded product." },
+      { name: "SnitchX Product 2", img: "snitchx1.jpg", desc: "Next-gen SnitchX merchandise." },
+      { name: "SnitchX Product 3", img: "snitchx2.jpg", desc: "SnitchX special edition gear." }
+    ];
 
-  <!-- Rolex 2 -->
-  <div class="product-card">
-    <img src="images/rolex2.jpg" alt="Rolex Black Edition">
-    <h3>Rolex Black</h3>
-    <p>Limited Edition</p>
-    <span class="price">₹8,500</span>
-    <a class="whatsapp-btn" href="https://wa.me/918793727113?text=Hi%20SnitchX,%20I'm%20interested%20in%20Rolex%20Black.%20Details%20please." target="_blank">📲 WhatsApp Us</a>
-  </div>
+    const catalogEl = document.getElementById("catalog");
 
-  <!-- SnitchX T-shirt -->
-  <div class="product-card">
-    <img src="images/snitchx.jpg" alt="SnitchX Tee">
-    <h3>SnitchX Tee</h3>
-    <p>Streetwear Edition</p>
-    <span class="price">₹999</span>
-    <a class="whatsapp-btn" href="https://wa.me/918793727113?text=Hi%20SnitchX,%20I'm%20interested%20in%20SnitchX%20Tee.%20More%20info%20please." target="_blank">📲 WhatsApp Us</a>
-  </div>
+    // Dynamically create product cards
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
 
-</div>
+      card.innerHTML = `
+        <img class="product-image" src="${product.img}" alt="${product.name}" />
+        <div class="product-info">
+          <div class="product-name">${product.name}</div>
+          <div class="product-desc">${product.desc}</div>
+          <a class="whatsapp-btn" href="https://wa.me/8793727113?text=Hi%20I%20am%20interested%20in%20${encodeURIComponent(product.name)}" target="_blank">WhatsApp Inquiry</a>
+        </div>
+      `;
+
+      catalogEl.appendChild(card);
+    });
+  </script>
 
 </body>
 </html>
