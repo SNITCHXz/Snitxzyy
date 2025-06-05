@@ -275,6 +275,27 @@
   #musicToggle:hover {
     box-shadow: 0 0 25px #9e00ff;
   }
+
+  /* Footer */
+  footer {
+    background: rgba(30, 0, 40, 0.6);
+    backdrop-filter: blur(12px);
+    text-align: center;
+    padding: 20px 0;
+    color: #9e00ff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: 0 -2px 10px rgba(158,0,255,0.4);
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  footer span {
+    background: linear-gradient(90deg, #9e00ff, #ff0080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+  }
 </style>
 </head>
 <body>
@@ -369,6 +390,11 @@
   <source src="music.mp3" type="audio/mp3" />
 </audio>
 
+<!-- Footer -->
+<footer>
+  <span>OG STYLE &nbsp;&nbsp;|&nbsp;&nbsp; CREATED BY MEDOWWEBDEV &copy; 2025</span>
+</footer>
+
 <script>
   // Loading screen hide after 2.5 sec
   window.addEventListener('load', () => {
@@ -424,4 +450,4 @@
   });
 </script>
 </body>
-      </html>
+  </html>
